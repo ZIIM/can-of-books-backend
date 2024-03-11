@@ -17,4 +17,15 @@ app.get('/test', (request, response) => {
 
 })
 
+mongoose.connect(DATABASE_URL)
+.then(() => {
+  app.listen(PORT, () => {
+    console.log('Server is listening!', PORT);
+  });
+})
+.catch(e => {
+  console.log('DB Connection issue', e);
+});
+
+
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
