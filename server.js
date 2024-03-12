@@ -19,6 +19,29 @@ app.get('/test', async (request, response) => {
 
 })
 
+const bookSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true // This makes the title a required field
+  },
+  description: {
+    type: String,
+    required: true // This makes the description a required field
+  },
+  status: {
+    type: String,
+    default: 'available' // Default status is 'available' if not specified
+    // You might also consider using an enum if there are only a few valid statuses.
+    // For example: enum: ['available', 'borrowed', 'reserved']
+  }
+});
+
+// Create a model from the schema
+const Book = mongoose.model('Book', bookSchema);
+
+// Export the model
+module.exports = Book;
+
 mongoose.connect(DATABASE_URL)
 .then(() => {
   app.listen(PORT, () => {
