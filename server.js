@@ -1,12 +1,21 @@
 'use strict';
-require('dotenv').config();
+// Requires and configures dotenv, a module that loads environment variables from a .env file into process.env. This is useful for hiding sensitive configuration options (like database passwords) from your source code.
+require('dotenv').config(); 
+// Requires the Express framework and assigns it to the variable express. Express is a web application framework for Node.js, designed for building web applications and APIs.
 const express = require('express');
+// Requires the CORS (Cross-Origin Resource Sharing) package and assigns it to the variable cors. CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
 const cors = require('cors');
+// Requires the Mongoose package, a MongoDB object modeling tool designed to work in an asynchronous environment, and assigns it to the variable mongoose.
 const mongoose = require('mongoose');
-const Empty = mongoose.model('Empty', someSchema);
+// take this empty out
+// const Empty = mongoose.model('Empty', someSchema);
 
+// Creates an instance of an Express application.
+// Tells the Express application to use CORS. This enables your server to accept requests from different origins (domains), which is especially important for API services accessed by web applications running on other domains.
 const app = express();
 app.use(cors());
+
+
 
 const PORT = process.env.PORT || 3001;
 const DATABASE_URL = process.env.DATABASE_URL;
@@ -14,7 +23,7 @@ const DATABASE_URL = process.env.DATABASE_URL;
 
 app.get('/test', async (request, response) => {
 
-  let documents = await empty.find(); // added new
+  let documents = await Empty.find(); // added new
   response.send('test request received')
 
 })
