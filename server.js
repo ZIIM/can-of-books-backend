@@ -44,6 +44,16 @@ app.delete('/books/:id', async(request, response)=>{
   }
 });
 
+// Update book 
+// app.post('/books/:id', async (request,response)=>{
+//   let json = request.body;
+//   let id = request.params.id;
+
+//   let document = await Books.findByIdAndDelete({_id: id });
+
+// });
+
+
 mongoose.connect(DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
