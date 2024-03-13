@@ -8,7 +8,7 @@
 
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
-
+- **Front-End**: https://github.com/Makster04/can-of-books-frontend.git
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 - **axios**: ^1.6.7
