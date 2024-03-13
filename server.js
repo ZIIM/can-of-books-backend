@@ -17,13 +17,14 @@ app.use(cors());
 // tells express to expect json data attached to our request objects.
 app.use(express.json());
 
+// route for handling POST request to '/books'
 app.get('/books', async(request,response)=>{
   // READ from the books model
   let documents = await Books.find(); // should return every model instance in the Data Base
-  response.send(documents);
+  response.send(documents); // sends the retrieved docuemnts as a http response
 });
 
-// create a books object
+// CREATE!! a books object by defining a route for handling POST requests
 app.post('/books', async(request, response)=>{
   let json = request.body;
   console.log('Books values', json);
@@ -31,36 +32,17 @@ app.post('/books', async(request, response)=>{
   response.send(newBooks);
 });
 
-// delete a books object by id
+// DELETE!! a books object by id
 app.delete('/books/:id', async(request, response)=>{
-  let id = request.params.id;
-  console.log('Books ID to Remove', id);
-  let result = await Books.findByIdAndDelete(id);
+  let id = request.params.id; // Retrieves the ID of the book to delete from the request parameters.
+  console.log('Books ID to Remove', id); // logs id of the book to deleete to console
+  let result = await Books.findByIdAndDelete(id); //deletes book with spec id
   if(result){
     response.status(204).send('OK');
   }else{
     response.status(400);
   }
 });
-
-
-// app.get('/books', async (request, response) => {
-//   try {
-//     const books = await Books.find();
-//     console.log('BOOKS FROM MONGODB', books);
-//     response.json(books);
-//   } catch (error) {
-//     response.status(500).send({ error: 'Error fetching books' });
-//   }
-// });
-
-
-
-
-
-
-
-
 
 mongoose.connect(DATABASE_URL, {
   useNewUrlParser: true,
