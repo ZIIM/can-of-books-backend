@@ -32,6 +32,7 @@ function verifyUser(request, response, next) {
 // Define a client, this is a connection to YOUR auth0 account, using the URL given in your dashboard
 const client = jwksClient({
   // this url comes from your app on the auth0 dashboard
+//   console.log(jwksUri);
   jwksUri: process.env.JWKS_URI,
 });
 

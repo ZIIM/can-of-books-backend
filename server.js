@@ -1,13 +1,12 @@
 'use strict';
-
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+dotenv.config();
 const mongoose = require('mongoose');
 const Books = require('./model/books.js');
 const authorize = require('./authorize.js');
 
-dotenv.config();
 
 const PORT = process.env.PORT || 3001;
 const DATABASE_URL=process.env.DATABASE_URL;
