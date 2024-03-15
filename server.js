@@ -5,6 +5,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const Books = require('./model/books.js');
+const authorize = require('./authorize.js');
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(cors());
 
 // tells express to expect json data attached to our request objects.
 app.use(express.json());
+app.use(authorize);
 
 // route for handling POST request to '/books'
 app.get('/books', async(request,response)=>{
