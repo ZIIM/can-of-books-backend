@@ -45,13 +45,21 @@ app.delete('/books/:id', async(request, response)=>{
 });
 
 // Update book 
-// app.post('/books/:id', async (request,response)=>{
-//   let json = request.body;
-//   let id = request.params.id;
+app.put('/books/:id', async (request,response)=>{
+  let id = request.params.id;
+  let updatedBookData = request.body;
 
-//   let document = await Books.findByIdAndDelete({_id: id });
-
-// });
+  try {
+    let updatedBook = await Books.findByIdAndUpdate(id, updatedBookData, { new: true });
+    if (!updatedBook) {
+      return response.status(404).send('Book not found');
+    }
+    response.send(updatedBook);
+  } catch (error) {
+    console.error('Error updating book:', error);
+    response.status(500).send('Internal Server Error');
+  }
+});
 
 
 mongoose.connect(DATABASE_URL, {
